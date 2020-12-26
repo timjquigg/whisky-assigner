@@ -22,6 +22,20 @@ const guests = [
     'John'
 ];
 
+// This list contains some common whisky tasting snacks.
+const snacks = [
+    'smoked salmon',
+    'hard cheese',
+    'soft cheese',
+    'cured meat',
+    'pickles',
+    'olives',
+    'dark chocolate',
+    'crackers',
+    'dried fruits',
+    'nuts'
+];
+
 /*  This function creates a weighted list of whisky regions. This will be used later so that when regions are randomly
     assigned, any extra assignments are done weighted towards the regions with more distilleries. */
 const create_weighted_list = regions => {
@@ -37,7 +51,7 @@ const create_weighted_list = regions => {
 const weighted_list = create_weighted_list(whisky_regions);
 
 // This function will assign a whisky region to each guest.
-const create_assignments = (names_list, regions_list) => {
+const create_whisky_assignments = (names_list, regions_list) => {
     const new_obj = {}
     names_list.forEach(guest => {
         // This number will be used to pick a random region out of the weighted list of whisky regions
@@ -67,5 +81,25 @@ const create_assignments = (names_list, regions_list) => {
     return new_obj;
 };
 
-const assignments = create_assignments(guests, weighted_list);
+const create_snack_assignments = (obj, snacks_list) => {
+    const new_list = [];
+    for (key in obj) {
+        let check = Math.floor(Math.random() * snacks_list.length);
+        let unique = false;
+        while (unique === false) {
+            if (new_list.indexOf(snacks_list[check]) === -1 || new_list.length >= snacks_list.length){
+                new_list.push(snacks_list[check]);
+                unique = true;
+            } else {
+                check = Math.floor(Math.random() * snacks_list.length);
+            }
+        }
+        obj[key] += ',' + new_list[Object.keys(obj).indexOf(key)];
+        obj[key] = obj[key].split(',');
+    }
+
+}
+
+const assignments = create_whisky_assignments(guests, weighted_list);
+create_snack_assignments(assignments, snacks);
 console.log(assignments);
