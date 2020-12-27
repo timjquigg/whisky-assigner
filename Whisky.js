@@ -24,16 +24,16 @@ const guests = [
 
 // This list contains some common whisky tasting snacks.
 const snacks = [
-    'smoked salmon',
-    'hard cheese',
-    'soft cheese',
-    'cured meat',
-    'pickles',
-    'olives',
-    'dark chocolate',
-    'crackers',
-    'dried fruits',
-    'nuts'
+    'Smoked Salmon',
+    'Hard Cheese',
+    'Soft Cheese',
+    'Cured Meat',
+    'Pickles',
+    'Olives',
+    'Dark Chocolate',
+    'Crackers',
+    'Dried Fruits',
+    'Nuts'
 ];
 
 /*  This function creates a weighted list of whisky regions. This will be used later so that when regions are randomly
@@ -122,7 +122,11 @@ const create_draw_list = guest_list => {
 const create_assignments = (guest_lst, whisky_lst, snack_lst, draw_lst) => {
     const new_obj = {};
     for (let i = 0; i < guest_lst.length; i++) {
-        new_obj[guest_lst[i]] = [whisky_lst[i], snack_lst[i], draw_lst[i]];
+        new_obj[guest_lst[i]] = {
+            'Whisky Region': whisky_lst[i],
+            'Snack' : snack_lst[i],
+            'Draw \#': draw_lst[i]
+        };
     };
     return new_obj;
 }
@@ -131,4 +135,13 @@ const whisky_list = create_whisky_list(guests, whisky_regions, create_weighted_l
 const snack_list = create_snack_list(guests, snacks);
 const draw_list = create_draw_list(guests);
 
-console.log(create_assignments(guests, whisky_list, snack_list, draw_list));
+const assignments = create_assignments(guests, whisky_list, snack_list, draw_list);
+
+console.log(
+'\nThank you for signing up for our next whisky night! For this event we\'ve randomly assigned everyone a \
+different Scotch Whisky Region to bring a bottle from. We\'ve also randomly assigned everyone a different \
+snack to bring. At the end of the night everyone will get to go home with one of the bottles of whisky. We \
+will draw numbers to see what order we pick our bottle to take home. The table below contains your assignment \
+and draw order.\n'
+);
+console.table(assignments);
