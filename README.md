@@ -33,10 +33,7 @@ To-do list:
 * Allow for guest signup on website
 
 ## Status
-Project is: _finished_ for now
-
-## Inspiration
-Add here credits. Project inspired by..., based on...
+Project is _finished_ for now. I will revisit the project as I progress on my development journey. I would like to have a web interface including sign-up in the future. 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [Tim Quigg](mailto:timjquigg@gmail.com/) - feel free to contact me!
